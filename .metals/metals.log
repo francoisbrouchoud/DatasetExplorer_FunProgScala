@@ -1,0 +1,109 @@
+2023.05.06 12:21:59 INFO  Started: Metals version 0.11.12 in workspace 'D:\Ecole\semestre6\Scala\Projet' for client Visual Studio Code 1.78.0.
+mai 06, 2023 12:21:59 PM org.flywaydb.core.internal.license.VersionPrinter printVersionOnly
+INFO: Flyway Community Edition 9.16.3 by Redgate
+mai 06, 2023 12:21:59 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: See release notes here: https://rd.gt/416ObMi
+mai 06, 2023 12:21:59 PM org.flywaydb.core.internal.license.VersionPrinter printVersion
+INFO: 
+mai 06, 2023 12:22:00 PM org.flywaydb.core.internal.database.base.BaseDatabaseType createDatabase
+INFO: Database: jdbc:h2:file:D:\Ecole\semestre6\Scala\Projet\.metals\metals (H2 2.1)
+mai 06, 2023 12:22:00 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory allAppliedMigrations
+INFO: Schema history table "PUBLIC"."flyway_schema_history" does not exist yet
+mai 06, 2023 12:22:00 PM org.flywaydb.core.internal.command.DbValidate validate
+INFO: Successfully validated 4 migrations (execution time 00:00.027s)
+mai 06, 2023 12:22:00 PM org.flywaydb.core.internal.schemahistory.JdbcTableSchemaHistory create
+INFO: Creating Schema History table "PUBLIC"."flyway_schema_history" ...
+mai 06, 2023 12:22:00 PM org.flywaydb.core.internal.command.DbMigrate migrateGroup
+INFO: Current version of schema "PUBLIC": << Empty Schema >>
+mai 06, 2023 12:22:00 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "1 - Create tables"
+mai 06, 2023 12:22:00 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "2 - Server discovery"
+mai 06, 2023 12:22:00 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "3 - Jar symbols"
+mai 06, 2023 12:22:00 PM org.flywaydb.core.internal.command.DbMigrate doMigrateGroup
+INFO: Migrating schema "PUBLIC" to version "4 - Fingerprints"
+mai 06, 2023 12:22:00 PM org.flywaydb.core.internal.command.DbMigrate logSummary
+INFO: Successfully applied 4 migrations to schema "PUBLIC", now at version v4 (execution time 00:00.079s)
+2023.05.06 12:22:00 INFO  time: initialize in 0.94s
+2023.05.06 12:22:04 WARN  Build server is not auto-connectable.
+2023.05.06 12:22:04 WARN  no build target for: D:\Ecole\semestre6\Scala\Projet\build.sbt
+2023.05.06 12:22:07 INFO  running 'C:\Program Files\Java\jdk-17.0.1\bin\java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -Dsbt.version=1.8.2 -jar C:\Users\celin\AppData\Local\Temp\metals12619035535775080908\sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'
+2023.05.06 12:22:07 ERROR [info] [launcher] getting org.scala-sbt sbt 1.8.2  (this may take some time)...
+2023.05.06 12:22:14 WARN  no build target for: D:\Ecole\semestre6\Scala\Projet\project\project\metals.sbt
+2023.05.06 12:23:32 WARN  no build target for: D:\Ecole\semestre6\Scala\Projet\src\main\scala\Projet.scala
+2023.05.06 12:23:57 INFO  no build target found for D:\Ecole\semestre6\Scala\Projet\build.sbt. Using presentation compiler with project's scala-library version: 3.2.2
+mai 06, 2023 12:23:57 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 35
+mai 06, 2023 12:23:57 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 42
+mai 06, 2023 12:23:58 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 50
+mai 06, 2023 12:23:58 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 61
+mai 06, 2023 12:23:58 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 62
+mai 06, 2023 12:23:58 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 71
+mai 06, 2023 12:23:58 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 46
+mai 06, 2023 12:23:58 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 84
+mai 06, 2023 12:23:58 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 89
+mai 06, 2023 12:23:58 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 94
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.27s
+2023.05.06 12:24:03 INFO  time: code lens generation in 4.99s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.36s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.53s
+2023.05.06 12:24:03 INFO  time: code lens generation in 4.55s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.1s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.23s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.04s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.59s
+2023.05.06 12:24:03 INFO  time: code lens generation in 30s
+2023.05.06 12:24:03 INFO  time: code lens generation in 4.8s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.42s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.35s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.57s
+2023.05.06 12:24:03 INFO  time: code lens generation in 4.64s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.48s
+2023.05.06 12:24:03 INFO  time: code lens generation in 4.41s
+2023.05.06 12:24:03 INFO  time: code lens generation in 3.31s
+2023.05.06 12:24:03 INFO  time: code lens generation in 4.46s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.24s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.33s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.03s
+2023.05.06 12:24:03 INFO  time: code lens generation in 5.46s
+mai 06, 2023 12:24:03 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 124
+2023.05.06 12:24:04 INFO  time: code lens generation in 1m49s
+2023.05.06 12:24:04 INFO  time: code lens generation in 2m
+2023.05.06 12:24:04 INFO  time: code lens generation in 1.16s
+2023.05.06 12:24:04 INFO  time: code lens generation in 2.3s
+2023.05.06 12:24:04 INFO  time: code lens generation in 3.1s
+2023.05.06 12:24:06 ERROR [info] [launcher] getting Scala 2.12.17 (for sbt)...
+2023.05.06 12:24:06 ERROR [error] [launcher] could not retrieve sbt 1.8.2: missing sbt.xMain
+2023.05.06 12:24:07 INFO  time: ran 'sbt bloopInstall' in 1m59s
+2023.05.06 12:24:07 ERROR sbt command failed: C:\Program Files\Java\jdk-17.0.1\bin\java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -Dsbt.version=1.8.2 -jar C:\Users\celin\AppData\Local\Temp\metals12619035535775080908\sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall
+2023.05.06 12:24:09 WARN  no build target for: D:\Ecole\semestre6\Scala\Projet\src\main\scala\Projet.scala
+mai 06, 2023 12:24:30 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 161
+2023.05.06 12:25:08 WARN  no build target for: D:\Ecole\semestre6\Scala\Projet\src\main\scala\projet\Projet.scala
+mai 06, 2023 12:25:34 PM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+WARNING: Unmatched cancel notification for request id 201
+2023.05.06 12:25:55 WARN  no build target for: D:\Ecole\semestre6\Scala\Projet\src\main\scala\projet\Projet.scala
+2023.05.06 12:28:16 WARN  no build target for: D:\Ecole\semestre6\Scala\Projet\build.sbt
+2023.05.06 12:28:18 INFO  running 'C:\Program Files\Java\jdk-17.0.1\bin\java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -Dsbt.version=1.8.2 -jar C:\Users\celin\AppData\Local\Temp\metals10215926419961906199\sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall'
+2023.05.06 12:28:19 ERROR [info] [launcher] getting org.scala-sbt sbt 1.8.2  (this may take some time)...
+2023.05.06 12:28:29 ERROR [error] [launcher] java.nio.file.FileSystemException: C:\Users\celin\.sbt\boot\scala-2.12.17\org.scala-sbt\sbt\1.8.2\sbt-1.8.2.jar: Le processus ne peut pas accéder au fichier car ce fichier est utilisé par un autre processus
+2023.05.06 12:28:29 ERROR [error] [launcher] could not retrieve sbt 1.8.2
+2023.05.06 12:28:29 INFO  time: ran 'sbt bloopInstall' in 10s
+2023.05.06 12:28:29 ERROR sbt command failed: C:\Program Files\Java\jdk-17.0.1\bin\java -Djline.terminal=jline.UnsupportedTerminal -Dsbt.log.noformat=true -Dfile.encoding=UTF-8 -Dsbt.version=1.8.2 -jar C:\Users\celin\AppData\Local\Temp\metals10215926419961906199\sbt-launch.jar -Dbloop.export-jar-classifiers=sources bloopInstall
+2023.05.06 12:28:52 WARN  no build target for: D:\Ecole\semestre6\Scala\Projet\build.sbt
+2023.05.06 12:28:52 INFO  skipping build import with status 'Failed'
+2023.05.06 12:28:59 WARN  no build target for: D:\Ecole\semestre6\Scala\Projet\src\main\scala\projet\Projet.scala
+2023.05.06 12:29:00 WARN  no build target for: D:\Ecole\semestre6\Scala\Projet\src\main\scala\projet\Projet.scala
+mai 06, 2023 12:30:09 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace

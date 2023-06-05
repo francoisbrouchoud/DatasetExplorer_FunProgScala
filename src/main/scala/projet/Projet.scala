@@ -1,7 +1,10 @@
 package projet
 
-import org.apache.commons.csv.CSVFormat
+import $ivy.`com.github.tototoshi::scala-csv:1.3.8`
+
+import com.github.tototoshi.csv._
 import java.io.FileReader
+import java.io.File
 
 @main def hello() = println("Hello, World !")
 
@@ -16,7 +19,7 @@ class Property(name:String, price:Int, houseType:HouseType, area:Int, nbBedrooms
 }
 //Load data (CV)
 val csvFile = "08-PropertiesLondon.csv"
-val reader = new FileReader(csvFile)
+val reader = CSVReader.open(new File(csvFile))
 val csvParser = CSVFormat.DEFAULT.withHeader().parse(reader)
 val properties = csvParser.getRecords.map(record => 
     Property(record.get("Property Name"), 

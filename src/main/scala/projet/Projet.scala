@@ -10,7 +10,20 @@ import java.io.File
 
 enum HouseType :
     case House, FlatApartment, NewDevelopment, Penthouse, Bungalow, Duplex, Mews, Studio
-
+object HouseType {
+  def fromString(value: String): Option[HouseType] =
+      value.toLowerCase match {
+        case "house" => Some(HouseType.House)
+        case "flat / apartment" => Some(HouseType.FlatApartment)
+        case "new development" => Some(HouseType.NewDevelopment)
+        case "penthouse" => Some(HouseType.Penthouse)
+        case "bungalow" => Some(HouseType.Bungalow)
+        case "duplex" => Some(HouseType.Duplex)
+        case "mews" => Some(HouseType.Mews)
+        case "studio" => Some(HouseType.Studio)
+        case _ => None
+      }
+  }
 trait PostalCode {
   val postalCode: String
 }
@@ -58,6 +71,13 @@ val properties = csvParser.getRecords.map(record =>
     )
     )
 
+// Dans le cas ou l'import csv ne fonctionne pas
+/*val properties = Seq(
+  Property("name1",12,HouseType.valueOf("Flat / Apartment"),12,1,1,1,PostalCode("test")),
+  Property("name2",24,HouseType.valueOf("New development"),12,1,2,1,PostalCode("test2")),
+  Property("name3",124,HouseType.valueOf("House"),120,11,2,3,PostalCode("test3"))
+  )
+*/
 //Query1(CV): map: prix par m2 (prix/area)
 val priceM2 = properties.map(property=>property.price/property.area)
 //Query2(FB): reduce: moyenne prix ou bathroom au total (plus simple) -> (à voir si on filtre sur City)

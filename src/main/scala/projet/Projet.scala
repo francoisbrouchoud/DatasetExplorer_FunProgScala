@@ -54,7 +54,7 @@ def choosePostalCode (city:String, location:String, postalCode:String): PostalCo
   }
 }
 
-class Property(name:String, price:Int, houseType:HouseType, area:Int, nbBedrooms:Int, nbBathrooms:Int, nbReceptions:Int, val address:PostalCode)
+class Property(val name:String, val price:Int, val houseType:HouseType, val area:Int, val nbBedrooms:Int, val nbBathrooms:Int, val nbReceptions:Int, val address:PostalCode)
 {
   override def toString: String = s"House(name: $name, houseType: $houseType, price: $price)"
 }
@@ -81,11 +81,16 @@ val properties = reader.allWithHeaders().map(record =>
   )
 */
 //Query1(CV): map: prix par m2 (prix/area)
-val priceM2 = properties.map(property=>property.price/property.area)
+/*
+val priceM2 = properties.map(property => (property.name, property.price/property.area))
+priceM2.foreach { case (name, price) =>
+  println(s"Property: $name, Price per square meter: $price")
+}
+*/
 //Query2(FB): reduce: moyenne prix ou bathroom au total (plus simple) -> (à voir si on filtre sur City)
 //Query3(CV): filtre: sortir toutes les flat appartment
-val filter=HouseType.Duplex
-val filteredHouses = properties.filter(_.houseType == filter)
+//val filter=HouseType.Duplex
+//val filteredHouses = properties.filter(_.houseType == filter)
 //filteredHouses.foreach(println)
 //Query4(FB): aggragate: filtrer sur une ville puis affichage du nombre par HouseType
 //Query5(FB): calcul du nombre de pièces avec un taux par pièce (badroom 0.5 par ex.)

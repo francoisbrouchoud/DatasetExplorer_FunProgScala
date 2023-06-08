@@ -103,6 +103,18 @@ priceM2properties.foreach { case (name, priceM2, houseType, address) =>
 }
 
 //Query2(FB):  reduce: moyenne prix ou bathroom au total (plus simple) -> (à voir si on filtre sur City)
+//TODO J'ai fait par type de house mais on peut changer avec city
+//TODO vérifier bug prix négatif
+val avgPriceByProperty = properties.groupBy(_.houseType).map { 
+  case (houseType, properties) =>
+    val avgPriceByProperty = properties.map(_.price).sum.toLong / properties.size 
+    (houseType, avgPriceByProperty)
+  }
+
+avgPriceByProperty.foreach { 
+  case (houseType, averagePrice) =>
+  println(s"HouseType: ${HouseType.toString(houseType)}, Average Price: $averagePrice £")
+}
 
 
 

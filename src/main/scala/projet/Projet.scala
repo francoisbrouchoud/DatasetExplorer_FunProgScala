@@ -23,13 +23,26 @@ object HouseType {
         case "studio" => Some(HouseType.Studio)
         case _ => None
       }
+  def toString(houseType: HouseType): String = 
+    houseType match {
+      case HouseType.House => "house"
+      case HouseType.FlatApartment => "flat / apartment"
+      case HouseType.NewDevelopment => "new development"
+      case HouseType.Penthouse => "penthouse"
+      case HouseType.Bungalow => "bungalow"
+      case HouseType.Duplex => "duplex"
+      case HouseType.Mews => "mews"
+      case HouseType.Studio => "studio"
+    }
   }
 trait PostalCode {
   val postalCode: String
 }
 class Location(location: String, val postalCode: String) extends PostalCode
 class City(city:String, val postalCode: String) extends PostalCode
-class Address(city:String, location:String, val postalCode: String) extends PostalCode
+class Address(city:String, location:String, val postalCode: String) extends PostalCode{
+    override def toString: String = s"City: $city, Location: $location, PostalCode: $postalCode"
+}
 class OnlyPostalCode(val postalCode: String) extends PostalCode
 
 def choosePostalCode (city:String, location:String, postalCode:String): PostalCode =
@@ -80,13 +93,13 @@ val properties = reader.allWithHeaders().map(record =>
   Property("name3",124,HouseType.valueOf("House"),120,11,2,3,PostalCode("test3"))
   )
 */
-//Query1(CV): map: prix par m2 (prix/area)
-/*
-val priceM2 = properties.map(property => (property.name, property.price/property.area))
-priceM2.foreach { case (name, price) =>
-  println(s"Property: $name, Price per square meter: $price")
+//Query1(CV): map: prix par m2 (prix/area) et tri dans l'ordre
+//TODO Check pour les adresses
+val priceM2properties = properties.map(property => (property.name, property.price/property.area, property.houseType, property.address)).sortBy(_._2)
+priceM2properties.foreach { case (name, priceM2, houseType, address) =>
+  println(s"Name: $name, Price M2: $priceM2, Type: ${HouseType.toString(houseType)}, Address: $address")
 }
-*/
+
 //Query2(FB): reduce: moyenne prix ou bathroom au total (plus simple) -> (à voir si on filtre sur City)
 //Query3(CV): filtre: sortir toutes les flat appartment
 //val filter=HouseType.Duplex

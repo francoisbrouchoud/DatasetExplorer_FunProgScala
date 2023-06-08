@@ -59,7 +59,7 @@ class Property(val name:String, val price:Int, val houseType:HouseType, val area
   override def toString: String = s"House(name: $name, houseType: $houseType, price: $price)"
 }
 //Load data (CV)
-val csvFile = "08-PropertiesLondon.csv"
+val csvFile = "./08-PropertiesLondon.csv"
 val reader = CSVReader.open(new File(csvFile))
 val properties = reader.allWithHeaders().map(record => 
     Property(record("Property Name"), 

@@ -1,12 +1,12 @@
 package projet
 
-import $ivy.`com.github.tototoshi::scala-csv:1.3.8`
+
 
 import com.github.tototoshi.csv._
 import java.io.FileReader
 import java.io.File
 
-@main def hello() = println("Hello, World !")
+@main def hello() = {println("Hello, World !")
 
 enum HouseType :
     case House, FlatApartment, NewDevelopment, Penthouse, Bungalow, Duplex, Mews, Studio
@@ -58,18 +58,17 @@ class Property(name:String, price:Int, houseType:HouseType, area:Int, nbBedrooms
 //Load data (CV)
 val csvFile = "08-PropertiesLondon.csv"
 val reader = CSVReader.open(new File(csvFile))
-val csvParser = CSVFormat.DEFAULT.withHeader().parseAll(reader)
-val properties = csvParser.getRecords.map(record => 
-    Property(record.get("Property Name"), 
-    record.get("Price").toInt,
-    HouseType.valueOf(record.get("House Type")),
-    record.get("Area in sq ft").toInt,
-    record.get("No. of Bedrooms").toInt,
-    record.get("No. of Bathrooms").toInt,
-    record.get("No. of Receptions").toInt,
-    choosePostalCode(record.get("Location"),record.get("City/County"),record.get("Postal Code"))
+val properties = reader.allWithHeaders().map(record => 
+    Property(record("Property Name"), 
+    record("Price").toInt,
+    HouseType.fromString(record("House Type")).getOrElse(HouseType.House), 
+    record("Area in sq ft").toInt,
+    record("No. of Bedrooms").toInt,
+    record("No. of Bathrooms").toInt,
+    record("No. of Receptions").toInt,
+    choosePostalCode(record("Location"),record("City/County"),record("Postal Code"))
     )
-    )
+)
 
 // Dans le cas ou l'import csv ne fonctionne pas
 /*val properties = Seq(
@@ -87,3 +86,4 @@ val filteredHouses = properties.filter(_.houseType == filter)
 //filteredHouses.foreach(println)
 //Query4(FB): aggragate: filtrer sur une ville puis affichage du nombre par HouseType
 //Query5(FB): calcul du nombre de pièces avec un taux par pièce (badroom 0.5 par ex.)
+}

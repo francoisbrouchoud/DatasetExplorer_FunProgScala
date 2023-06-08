@@ -3,5 +3,6 @@ ThisBuild / scalaVersion := "3.1.3"
 ThisBuild / organization := "ch.hevs"
 
 libraryDependencies ++= Seq(
-    "org.scalatest"%% "scalatest"% "3.2.14"% Test 
+    "org.scalatest"%% "scalatest"% "3.2.14"% Test,
+    "com.github.tototoshi" %% "scala-csv" % "1.3.8"
 )

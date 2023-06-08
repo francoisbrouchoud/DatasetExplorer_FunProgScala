@@ -30,6 +30,7 @@ trait PostalCode {
 class Location(location: String, val postalCode: String) extends PostalCode
 class City(city:String, val postalCode: String) extends PostalCode
 class Address(city:String, location:String, val postalCode: String) extends PostalCode
+class OnlyPostalCode(val postalCode: String) extends PostalCode
 
 def choosePostalCode (city:String, location:String, postalCode:String): PostalCode =
 {
@@ -45,8 +46,10 @@ def choosePostalCode (city:String, location:String, postalCode:String): PostalCo
     if(location!=null&& location!=""){
       new Location(location,postalCode)
     }
+
+    //TODO à vérifier, car on peut pas instancier directement un trait
     else{
-      new PostalCode(postalCode)
+      new OnlyPostalCode(postalCode)
     }
   }
 }

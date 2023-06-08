@@ -42,6 +42,8 @@ class Location(location: String, val postalCode: String) extends PostalCode
 class City(city:String, val postalCode: String) extends PostalCode
 class Address(city:String, location:String, val postalCode: String) extends PostalCode{
     override def toString: String = s"City: $city, Location: $location, PostalCode: $postalCode"
+
+    
 }
 class OnlyPostalCode(val postalCode: String) extends PostalCode
 
@@ -100,11 +102,17 @@ priceM2properties.foreach { case (name, priceM2, houseType, address) =>
   println(s"Name: $name, Price M2: $priceM2, Type: ${HouseType.toString(houseType)}, Address: $address")
 }
 
-//Query2(FB): reduce: moyenne prix ou bathroom au total (plus simple) -> (à voir si on filtre sur City)
+//Query2(FB):  reduce: moyenne prix ou bathroom au total (plus simple) -> (à voir si on filtre sur City)
 //Query3(CV): filtre: sortir toutes les flat appartment
-//val filter=HouseType.Duplex
-//val filteredHouses = properties.filter(_.houseType == filter)
-//filteredHouses.foreach(println)
+val filter=HouseType.Duplex
+val filteredHouses = properties.filter(_.houseType == filter)
+filteredHouses.foreach(println)
+
 //Query4(FB): aggragate: filtrer sur une ville puis affichage du nombre par HouseType
 //Query5(FB): calcul du nombre de pièces avec un taux par pièce (badroom 0.5 par ex.)
+val roomsPerProperty = properties.map(property => (property.name, property.nbBedrooms + property.nbReceptions + (0.5 * property.nbBathrooms))).sortBy(_._2)
+roomsPerProperty.foreach { case (name, nbRooms) =>
+  println(s"Name: $name, NbRooms: $nbRooms")
+}
+
 }

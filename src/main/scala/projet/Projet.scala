@@ -5,11 +5,16 @@ import java.io.FileReader
 import java.io.File
 import java.{util => ju}
 
+
 @main def hello() = {
   println("Hello, World !")
-    val properties = loadDataHelper.loadCsv()
-    queryHelper.query1(properties)
-    
+  val properties = DataHelper.loadCsv()
+  Queries.query1(properties)
+  Queries.query2(properties)
+  Queries.query3(properties, HouseType.Duplex)
+  Queries.query4(properties)
+  Queries.query5(properties)
+
 
 
 /*

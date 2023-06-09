@@ -1,5 +1,5 @@
-package projet.helper
-object loadDataHelper {
+package projet
+object DataHelper {
 def choosePostalCode (city:String, location:String, postalCode:String): PostalCodeTrait =
 {
   if(city!=null && city!="")
@@ -17,7 +17,7 @@ def choosePostalCode (city:String, location:String, postalCode:String): PostalCo
 
     //TODO à vérifier, car on peut pas instancier directement un trait
     else{
-      new OnlyPostalCode(postalCode)
+      new PostalCode(postalCode)
     }
   }
 }

@@ -3,15 +3,23 @@ import java.{util => ju}
 
 object Queries{
 def query1 (properties:Seq[Property]) : Seq[(String, Double, HouseType, String)] = {
-    properties.map(property => (property.name, property.price/property.area, property.houseType, property.address)).sortBy(_._2)
+   try{
+        properties.map(property => (property.name, property.price/property.area, property.houseType, property.address)).sortBy(_._2)
+    }
+    catch {
+        case ex:Exception =>
+        ex.printStackTrace
+    }
 }
 
 def query2 (properties:Seq[Property]) : Seq={
-    properties.groupBy(_.houseType).map { 
-    case (houseType, properties) =>
-        val totalPrices = properties.map(_.price.toLong).sum
-        val avgPriceByProperty = totalPrices / properties.size
-        (houseType, avgPriceByProperty)
+    if properties.size > 0 then {
+        properties.groupBy(_.houseType).map { 
+        case (houseType, properties) =>
+            val totalPrices = properties.map(_.price.toLong).sum
+            val avgPriceByProperty = totalPrices / properties.size
+            (houseType, avgPriceByProperty)
+        }
     }
 }
 

@@ -5,8 +5,14 @@ import java.io.FileReader
 import java.io.File
 import java.{util => ju}
 
-@main def hello() = {println("Hello, World !")
+@main def hello() = {
+  println("Hello, World !")
+    val properties = loadDataHelper.loadCsv()
+    queryHelper.query1(properties)
+    
 
+
+/*
 var properties: Seq[Property] = Seq()
 //Load data (CV)
 try{
@@ -37,6 +43,9 @@ catch {
   Property("name3",124,HouseType.valueOf("House"),120,11,2,3,PostalCode("test3"))
   )
 */
+
+
+
 //Query1(CV): map: prix par m2 (prix/area) et tri dans l'ordre
 //TODO Check pour les adresses
 //exception div par 0
@@ -88,5 +97,5 @@ val roomsPerProperty = properties.map(property => (property.name, property.nbBed
 roomsPerProperty.foreach { case (name, nbRooms) =>
   //println(s"Name: $name, NbRooms: $nbRooms")
 }
-
+*/
 }

@@ -1,4 +1,9 @@
-def query1 (properties:Seq[Property]) : Seq={
+package projet
+import java.{util => ju}
+
+object queryHelper{
+
+def query1 (properties:Seq[Property]) : Seq[(String, Double, HouseType, String)] = {
     properties.map(property => (property.name, property.price/property.area, property.houseType, property.address)).sortBy(_._2)
 }
 
@@ -30,4 +35,5 @@ def query4 (properties:Seq[Property]) : Seq={
 
 def query5 (properties:Seq[Property]) : Seq={
     properties.map(property => (property.name, property.nbBedrooms + property.nbReceptions + (0.5 * property.nbBathrooms))).sortBy(_._2)
+}
 }

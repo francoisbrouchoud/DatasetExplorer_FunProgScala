@@ -1,3 +1,5 @@
+package projet
+
 enum HouseTypeEnum :
     case House, FlatApartment, NewDevelopment, Penthouse, Bungalow, Duplex, Mews, Studio
 object HouseTypeEnum {

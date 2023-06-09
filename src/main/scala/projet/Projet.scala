@@ -38,9 +38,12 @@ object HouseType {
 trait PostalCode {
   val postalCode: String
 }
+trait CityTrait {
+  val city: String
+}
 class Location(location: String, val postalCode: String) extends PostalCode
-class City(city:String, val postalCode: String) extends PostalCode
-class Address(city:String, val location:String, val postalCode: String) extends PostalCode{
+class City(val city:String, val postalCode: String) extends PostalCode with CityTrait
+class Address(val city:String, val location:String, val postalCode: String) extends PostalCode with CityTrait{
     override def toString: String = s"City: $city, Location: $location, PostalCode: $postalCode"
 
     
@@ -73,7 +76,9 @@ class Property(val name:String, val price:Int, val houseType:HouseType, val area
 {
   override def toString: String = s"House(name: $name, houseType: $houseType, price: $price)"
 }
+
 //Load data (CV)
+try{
 val csvFile = "./08-PropertiesLondon.csv"
 val reader = CSVReader.open(new File(csvFile))
 val properties = reader.allWithHeaders().map(record => 
@@ -87,6 +92,12 @@ val properties = reader.allWithHeaders().map(record =>
     choosePostalCode(record("Location"),record("City/County"),record("Postal Code"))
     )
 )
+}
+catch {
+  case ex:Exception =>
+    ex.printStackTrace
+    System.exit(1)
+}
 
 // Dans le cas ou l'import csv ne fonctionne pas
 /*val properties = Seq(
@@ -124,7 +135,7 @@ val filteredHouses = properties.filter(_.houseType == filter)
 //filteredHouses.foreach(println)
 
 //Query4(FB): aggragate: filtrer sur une ville puis affichage du nombre par HouseType
-//TODO corriger problème pour accéder au city
+//TODO corriger problème pour accéder au city 
 /*val londonProperties = properties.filter(property => property.address.city.equals("London"))
 val countByHouseType = londonProperties.groupBy(_.houseType).mapValues(_.size)
 countByHouseType.foreach { case (houseType, count) =>

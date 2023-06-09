@@ -1,3 +1,5 @@
+package projet.helper
+object loadDataHelper {
 def choosePostalCode (city:String, location:String, postalCode:String): PostalCodeTrait =
 {
   if(city!=null && city!="")
@@ -46,4 +48,5 @@ def loadCsv (): Seq[Property] =
       ex.printStackTrace
       System.exit(1)
   }
+}
 }

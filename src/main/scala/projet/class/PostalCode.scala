@@ -1,1 +1,3 @@
-class PostalCode(val postalCode: String) extends PostalCodeTrait
+package projet
+
+case class PostalCode(val postalCode: String) extends PostalCodeTrait

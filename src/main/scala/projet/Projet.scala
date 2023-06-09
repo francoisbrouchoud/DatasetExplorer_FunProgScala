@@ -1,10 +1,9 @@
 package projet
 
-
-
 import com.github.tototoshi.csv._
 import java.io.FileReader
 import java.io.File
+import java.{util => ju}
 
 @main def hello() = {println("Hello, World !")
 
@@ -77,11 +76,12 @@ class Property(val name:String, val price:Int, val houseType:HouseType, val area
   override def toString: String = s"House(name: $name, houseType: $houseType, price: $price)"
 }
 
+var properties: Seq[Property] = Seq()
 //Load data (CV)
 try{
 val csvFile = "./08-PropertiesLondon.csv"
 val reader = CSVReader.open(new File(csvFile))
-val properties = reader.allWithHeaders().map(record => 
+    properties = reader.allWithHeaders().map(record => 
     Property(record("Property Name"), 
     record("Price").toInt,
     HouseType.fromString(record("House Type")).getOrElse(HouseType.House), 

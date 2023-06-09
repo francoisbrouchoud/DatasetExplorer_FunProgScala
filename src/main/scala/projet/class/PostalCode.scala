@@ -1,0 +1,1 @@
+class PostalCode(val postalCode: String) extends PostalCodeTrait

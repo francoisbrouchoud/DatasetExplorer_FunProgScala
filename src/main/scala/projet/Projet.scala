@@ -56,7 +56,7 @@ val avgPriceByProperty = properties.groupBy(_.houseType).map {
 
 avgPriceByProperty.foreach { 
   case (houseType, averagePrice) =>
-  println(s"HouseType: ${HouseType.toString(houseType)}, Average Price: $averagePrice £")
+  //println(s"HouseType: ${HouseType.toString(houseType)}, Average Price: $averagePrice £")
 }
 
 
@@ -68,12 +68,18 @@ val filteredHouses = properties.filter(_.houseType == filter)
 
 //Query4(FB): aggragate: filtrer sur une ville puis affichage du nombre par HouseType
 //TODO corriger problème pour accéder au city 
-/*val londonProperties = properties.filter(property => property.address.city.equals("London"))
+
+val londonProperties = properties.filter { property =>
+  property.address match {
+    case cityTrait: CityTrait => cityTrait.city.equals("London")
+    case _ => false
+  }
+}
 val countByHouseType = londonProperties.groupBy(_.houseType).mapValues(_.size)
 countByHouseType.foreach { case (houseType, count) =>
   println(s"House Type: $houseType, Count: $count")
 }
-*/
+
 
 
 

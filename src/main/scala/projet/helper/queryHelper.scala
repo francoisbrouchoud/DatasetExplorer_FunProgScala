@@ -16,6 +16,16 @@ def query3 (properties:Seq[Property], filter:HouseType) : Seq={
 }
 
 def query4 (properties:Seq[Property]) : Seq={
+    val londonProperties = properties.filter { property =>
+        property.address match {
+            case cityTrait: CityTrait => cityTrait.city.equals("London")
+            case _ => false
+        }
+    }
+    countByHouseType = londonProperties.groupBy(_.houseType).mapValues(_.size)
+    countByHouseType.foreach { case (houseType, count) =>
+        println(s"House Type: $houseType, Count: $count")
+    }
 }
 
 def query5 (properties:Seq[Property]) : Seq={

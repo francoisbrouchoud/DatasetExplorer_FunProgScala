@@ -57,12 +57,12 @@ val futureQr4 = Future(Queries.query4(properties))
         }
       })
 
- val resultQry4 = Queries.query4(properties)
+ val resultQry4 = Queries.query4(properties, cityName)
   resultQry4.foreach { case (houseType, count) =>
     println(s"-------------------------------")
     println(s"House Type: $houseType")
     println(s"\tCount: $count")
-}
+  }
 
 
 

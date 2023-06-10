@@ -4,32 +4,44 @@ import com.github.tototoshi.csv._
 import java.io.FileReader
 import java.io.File
 import java.{util => ju}
+import scala.concurrent.Future
 
 
 @main def hello() = {
-  val properties = DataHelper.loadCsv()
+    val properties = DataHelper.loadCsv()
+/*
 
-
-  //Query 1 Top ten properties by price per area
-  val resultQry1 = Queries.query1(properties)
-  var index = 1
-  println(s"Query 1 : Top ten properties by price per area")
-  resultQry1.foreach { case (name, priceM2, houseType, address) =>
-    println(s"-------------------------------")
-    println(s"Property ${index}: $name")
-    println(s"Price per area : ${"%.2f".format(priceM2)} £/m2")
-    println(s"Type: $houseType")
-    println(s"Address: $address")
-    index +=1
+  val future = Future(DataHelper.loadCsv())
+  println(s"Welcom in our application show properties. Please wait data are loading")
+  
+  future.onComplete
+  { 
+    properties =>
+  //Query 1
+  val futureQr1 = Future(Queries.query1(properties))
+  futureQr1.onComplete
+  { resultQry1 => 
+    var index = 1
+    println(s"Query 1 : Top ten properties by price per area")
+    resultQry1.foreach { case (name, priceM2, houseType, address) =>
+      println(s"-------------------------------")
+      println(s"Property ${index}: $name")
+      println(s"Price per area : ${"%.2f".format(priceM2)} £/m2")
+      println(s"Type: $houseType")
+      println(s"Address: $address")
+      index +=1
+    }
   }
 
-
-  //Query 2 Average price by house type sorted
-  println(s"\n***********************************\n")
-  println(s"Query 2 : Average price by house type")
-  val resultQry2 = Queries.query2(properties)
-  resultQry2.foreach { case (houseType, avgPriceByProperty) => 
-        println(s"Average price for $houseType = $avgPriceByProperty £")
+  //Query 2
+  val futureQr2 = Future(Queries.query2(properties))
+  futureQr2.onComplete
+  { resultQry2 =>
+    println(s"\n***********************************\n")
+    println(s"Query 2 : Average price by house type")
+    resultQry2.foreach { case (houseType, avgPriceByProperty) => 
+          println(s"Average price for $houseType = $avgPriceByProperty £")
+    }
   }
 
  
@@ -46,12 +58,22 @@ import java.{util => ju}
     println(s"\tAddress: ${property.address}")
     index +=1
   }
-
+*/
 
 
   
 
- // Queries.query4(properties)
+ val resultQry4 = Queries.query4(properties)
+  resultQry4.foreach { case (houseType, count) =>
+    println(s"-------------------------------")
+    println(s"House Type: $houseType")
+    println(s"\tCount: $count")
+}
+
+
+
+
+
  // Queries.query5(properties)
 
 

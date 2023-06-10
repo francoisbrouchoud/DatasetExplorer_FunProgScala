@@ -11,7 +11,7 @@ import java.{util => ju}
   val properties = DataHelper.loadCsv()
   Queries.query1(properties)
   Queries.query2(properties)
-  Queries.query3(properties, HouseType.Duplex)
+  Queries.query3(properties, HouseTypeEnum.Duplex)
   Queries.query4(properties)
   Queries.query5(properties)
 

@@ -37,7 +37,7 @@ def loadCsv (): Seq[Property] =
       properties = reader.allWithHeaders().map(record => 
       Property(record("Property Name"), 
         record("Price").toInt,
-        HouseType.fromString(record("House Type")).getOrElse(HouseType.House), 
+        HouseTypeEnum.fromString(record("House Type")).getOrElse(HouseTypeEnum.House), 
         record("Area in sq ft").toInt,
         record("No. of Bedrooms").toInt,
         record("No. of Bathrooms").toInt,

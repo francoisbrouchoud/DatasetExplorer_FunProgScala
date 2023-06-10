@@ -2,7 +2,7 @@ package projet
 import java.{util => ju}
 
 object Queries{
-def query1 (properties:Seq[Property]) : Seq[(String, Double, HouseType, String)] = {
+def query1 (properties:Seq[Property]) : Seq[(String, Double, HouseTypeEnum, String)] = {
    try{
         properties.map(property => (property.name, property.price/property.area, property.houseType, property.address)).sortBy(_._2)
     }
@@ -23,7 +23,7 @@ def query2 (properties:Seq[Property]) : Seq={
     }
 }
 
-def query3 (properties:Seq[Property], filter:HouseType) : Seq={
+def query3 (properties:Seq[Property], filter:HouseTypeEnum) : Seq={
     properties.filter(_.houseType == filter)
 }
 

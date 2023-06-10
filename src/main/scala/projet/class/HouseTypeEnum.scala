@@ -3,7 +3,7 @@ package projet
 enum HouseTypeEnum :
     case House, FlatApartment, NewDevelopment, Penthouse, Bungalow, Duplex, Mews, Studio
 object HouseTypeEnum {
-  def fromString(value: String): Option[HouseType] =
+  def fromString(value: String): Option[HouseTypeEnum] =
       value.toLowerCase match {
         case "house" => Some(HouseTypeEnum.House)
         case "flat / apartment" => Some(HouseTypeEnum.FlatApartment)

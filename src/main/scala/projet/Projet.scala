@@ -7,13 +7,25 @@ import java.{util => ju}
 
 
 @main def hello() = {
-  println("Hello, World !")
   val properties = DataHelper.loadCsv()
-  Queries.query1(properties)
-  Queries.query2(properties)
-  Queries.query3(properties, HouseTypeEnum.Duplex)
-  Queries.query4(properties)
-  Queries.query5(properties)
+  val result = Queries.query1(properties)
+  
+  //Query 1
+  var index = 1
+  println(s"Top ten properties by price per area")
+  result.foreach { case (name, priceM2, houseType, address) =>
+    println(s"-------------------------------")
+    println(s"Property ${index}: $name")
+    println(s"Price per area : ${"%.2f".format(priceM2)} £/m2")
+    println(s"Type: $houseType")
+    println(s"Address: $address")
+    index +=1
+  }
+
+ // Queries.query2(properties)
+ // Queries.query3(properties, HouseTypeEnum.Duplex)
+ // Queries.query4(properties)
+ // Queries.query5(properties)
 
 
 

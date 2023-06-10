@@ -42,7 +42,7 @@ def loadCsv (): Seq[Property] =
         record("No. of Bedrooms").toInt,
         record("No. of Bathrooms").toInt,
         record("No. of Receptions").toInt,
-        choosePostalCode(record("Location"),record("City/County"),record("Postal Code"))
+        choosePostalCode(record("City/County"),record("Location"),record("Postal Code"))
         )
       )
   properties
@@ -51,6 +51,7 @@ def loadCsv (): Seq[Property] =
     case ex:Exception =>
       ex.printStackTrace
       System.exit(1)
+      Seq()
   }
 }
 }

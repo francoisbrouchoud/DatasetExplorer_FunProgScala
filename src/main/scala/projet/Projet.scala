@@ -10,19 +10,13 @@ import scala.concurrent.Future
 
 
 @main def hello() = {
-    val properties = DataHelper.loadCsv()
-
-
-  val future = Future(DataHelper.loadCsv())
+  val properties = DataHelper.loadCsv()
   println(s"Welcom in our application show properties. Please wait data are loading")
   
-  future.onComplete
-  {  
-    case scala.util.Failure(ex) => println(s"Erreur : ${ex.getMessage}")
-    case scala.util.Success(properties) => {
+
       //Query 1
       val futureQr1 = Future(Queries.query1(properties))
-      futureQr1.onComplete
+      futureQr1.onComplete(
       {  
         case scala.util.Failure(ex) => println(s"Erreur : ${ex.getMessage}")
         case scala.util.Success(resultQry1) => {
@@ -37,11 +31,11 @@ import scala.concurrent.Future
             index +=1
           }
         }
-      }
+      })
 
       //Query 2
       val futureQr2 = Future(Queries.query2(properties))
-      futureQr2.onComplete
+      futureQr2.onComplete(
       { 
         case scala.util.Failure(ex) => println(s"Erreur : ${ex.getMessage}")
         case scala.util.Success(resultQry2) => {
@@ -51,8 +45,8 @@ import scala.concurrent.Future
             println(s"Average price for $houseType = $avgPriceByProperty £")
           }
         }
-      }
-    }
+      })
+    
 
  
   //Query 3 List of Duplex
@@ -84,7 +78,6 @@ import scala.concurrent.Future
   // Queries.query5(properties)
 
 
-  }
 /*
 var properties: Seq[Property] = Seq()
 //Load data (CV)

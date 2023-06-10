@@ -13,7 +13,7 @@ import scala.concurrent.Future
   val properties = DataHelper.loadCsv()
   println(s"Welcom in our application show properties. Please wait data are loading")
   
-
+      
       //Query 1
       val futureQr1 = Future(Queries.query1(properties))
       futureQr1.onComplete(
@@ -46,14 +46,15 @@ import scala.concurrent.Future
           }
         }
       })
-    
+      
 
- 
+
   //Query 3 List of Duplex
   println(s"\n***********************************\n")
   println(s"Query 3 : List of duplex")
 
   val resultQry3 = Queries.query3(properties, HouseTypeEnum.Duplex)
+   var index = 1
    resultQry3.foreach { case (property) =>
     println(s"-------------------------------")
     println(s"Property ${index}: ${property.name}")
@@ -63,12 +64,12 @@ import scala.concurrent.Future
     index +=1
   }
 
- val resultQry4 = Queries.query4(properties)
+ val resultQry4 = Queries.query4(properties, cityName)
   resultQry4.foreach { case (houseType, count) =>
     println(s"-------------------------------")
     println(s"House Type: $houseType")
     println(s"\tCount: $count")
-}
+  }
 
 
 

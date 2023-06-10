@@ -25,24 +25,25 @@ def query2(properties: Seq[Property]): Seq[(String, Long)] = {
     Seq.empty
   }
 }
-/*
-def query3 (properties:Seq[Property], filter:HouseTypeEnum) : Seq={
+
+def query3 (properties: Seq[Property], filter: HouseTypeEnum) : Seq[Property] = {
     properties.filter(_.houseType == filter)
 }
 
-def query4 (properties:Seq[Property]) : Seq={
+
+
+def query4 (properties: Seq[Property]) : Seq[(HouseTypeEnum, Int)] = {
     val londonProperties = properties.filter { property =>
         property.address match {
             case cityTrait: CityTrait => cityTrait.city.equals("London")
             case _ => false
         }
     }
-    countByHouseType = londonProperties.groupBy(_.houseType).mapValues(_.size)
-    countByHouseType.foreach { case (houseType, count) =>
-        println(s"House Type: $houseType, Count: $count")
-    }
+    val countByHouseType = londonProperties.groupBy(_.houseType).mapValues(_.size)
+    countByHouseType.toSeq
 }
 
+/*
 def query5 (properties:Seq[Property]) : Seq={
     properties.map(property => (property.name, property.nbBedrooms + property.nbReceptions + (0.5 * property.nbBathrooms))).sortBy(_._2)
 }

@@ -6,12 +6,16 @@ import com.github.tototoshi.csv._
 import java.io.FileReader
 import java.io.File
 import java.{util => ju}
+import scala.concurrent.Future
 
 
 @main def hello() = {
+    val properties = DataHelper.loadCsv()
+
+
   val future = Future(DataHelper.loadCsv())
   println(s"Welcom in our application show properties. Please wait data are loading")
-
+  
   future.onComplete
   {  
     case scala.util.Failure(ex) => println(s"Erreur : ${ex.getMessage}")
@@ -49,6 +53,29 @@ import java.{util => ju}
         }
       }
     }
+
+ 
+  //Query 3 List of Duplex
+  println(s"\n***********************************\n")
+  println(s"Query 3 : List of duplex")
+
+  val resultQry3 = Queries.query3(properties, HouseTypeEnum.Duplex)
+   resultQry3.foreach { case (property) =>
+    println(s"-------------------------------")
+    println(s"Property ${index}: ${property.name}")
+    println(s"\tArea : ${property.area}m2, ${property.nbBathrooms} bathrooms, ${property.nbBedrooms} bedrooms, ${property.nbReceptions} receptions")
+    println(s"\tCost : ${property.price}£")
+    println(s"\tAddress: ${property.address}")
+    index +=1
+  }
+
+ val resultQry4 = Queries.query4(properties)
+  resultQry4.foreach { case (houseType, count) =>
+    println(s"-------------------------------")
+    println(s"House Type: $houseType")
+    println(s"\tCount: $count")
+}
+
 
 
 

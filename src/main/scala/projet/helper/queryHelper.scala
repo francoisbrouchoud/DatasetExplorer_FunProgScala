@@ -25,10 +25,12 @@ def query2(properties: Seq[Property]): Seq[(String, Long)] = {
     Seq.empty
   }
 }
-/*
-def query3 (properties:Seq[Property], filter:HouseTypeEnum) : Seq={
+
+def query3 (properties: Seq[Property], filter: HouseTypeEnum) : Seq[Property] = {
     properties.filter(_.houseType == filter)
 }
+
+/*
 
 def query4 (properties:Seq[Property]) : Seq={
     val londonProperties = properties.filter { property =>

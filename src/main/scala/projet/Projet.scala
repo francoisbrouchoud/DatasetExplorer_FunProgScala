@@ -10,7 +10,7 @@ import java.{util => ju}
   val properties = DataHelper.loadCsv()
 
 
-  //Query 1
+  //Query 1 Top ten properties by price per area
   val resultQry1 = Queries.query1(properties)
   var index = 1
   println(s"Query 1 : Top ten properties by price per area")
@@ -24,7 +24,7 @@ import java.{util => ju}
   }
 
 
-  //Query 2
+  //Query 2 Average price by house type sorted
   println(s"\n***********************************\n")
   println(s"Query 2 : Average price by house type")
   val resultQry2 = Queries.query2(properties)
@@ -32,10 +32,25 @@ import java.{util => ju}
         println(s"Average price for $houseType = $avgPriceByProperty £")
   }
 
+ 
+  //Query 3 List of Duplex
+  println(s"\n***********************************\n")
+  println(s"Query 3 : List of duplex")
+
+  val resultQry3 = Queries.query3(properties, HouseTypeEnum.Duplex)
+   resultQry3.foreach { case (property) =>
+    println(s"-------------------------------")
+    println(s"Property ${index}: ${property.name}")
+    println(s"\tArea : ${property.area}m2, ${property.nbBathrooms} bathrooms, ${property.nbBedrooms} bedrooms, ${property.nbReceptions} receptions")
+    println(s"\tCost : ${property.price}£")
+    println(s"\tAddress: ${property.address}")
+    index +=1
+  }
 
 
 
- // Queries.query3(properties, HouseTypeEnum.Duplex)
+  
+
  // Queries.query4(properties)
  // Queries.query5(properties)
 

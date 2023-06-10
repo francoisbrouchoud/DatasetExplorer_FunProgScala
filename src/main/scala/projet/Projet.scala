@@ -48,24 +48,30 @@ import scala.concurrent.Future
     index +=1
   }
 
-val futureQr4 = Future(Queries.query4(properties))
-      futureQr4.onComplete(
-      { 
-        case scala.util.Failure(ex) => println(s"Erreur : ${ex.getMessage}")
-        case scala.util.Success(resultQry4) => {
-          
-        }
-      })
-
- val resultQry4 = Queries.query4(properties, cityName)
-  resultQry4.foreach { case (houseType, count) =>
-    println(s"-------------------------------")
-    println(s"House Type: $houseType")
-    println(s"\tCount: $count")
+  val futureQr4a = Future(Queries.query4(properties,"London"))
+  futureQr4a.onComplete(
+  { 
+    case scala.util.Failure(ex) => println(s"Erreur : ${ex.getMessage}")
+    case scala.util.Success(resultQry4) => {
+      resultQry4.foreach { case (houseType, count) =>
+        println(s"-------------------------------")
+        println(s"House Type: $houseType")
+        println(s"\tCount: $count")
+      }
+    }
+  })
+val futureQr4b = Future(Queries.query4(properties,"Surrey"))
+futureQr4b.onComplete(
+{ 
+  case scala.util.Failure(ex) => println(s"Erreur : ${ex.getMessage}")
+  case scala.util.Success(resultQry4) => {
+    resultQry4.foreach { case (houseType, count) =>
+      println(s"-------------------------------")
+      println(s"House Type: $houseType")
+      println(s"\tCount: $count")
+    }
   }
-
-
-
+})
 
   // Queries.query3(properties, HouseTypeEnum.Duplex)
   // Queries.query4(properties)

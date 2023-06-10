@@ -5,7 +5,7 @@ import java.io.File
 
 object DataHelper {
   /**
-    * Choisie la bonne classe à implémenter en fonction des valeurs entrées
+    * Choisi la bonne classe à implémenter en fonction des valeurs entrées
     *
     * @param city
     * @param location
@@ -39,7 +39,6 @@ object DataHelper {
   def loadCsv (): Seq[Property] =
   {
     var properties: Seq[Property] = Seq()
-    //Load data (CV)
     try{
       val csvFile = "./08-PropertiesLondon.csv"
       val reader = CSVReader.open(new File(csvFile))

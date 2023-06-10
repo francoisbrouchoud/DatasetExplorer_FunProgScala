@@ -2,6 +2,12 @@ package projet
 import java.{util => ju}
 
 object Queries{
+/**
+  * affiche le prix par mètre carré de chaque propriété
+  *
+  * @param properties
+  * @return
+  */
 def query1 (properties:Seq[Property]) : Seq[(String, Double, HouseTypeEnum, PostalCodeTrait)] = {
    try{
         properties.map(property => (property.name, property.price/property.area.toDouble, property.houseType, property.address)).sortBy(_._2).take(10)

@@ -35,7 +35,7 @@ def query3 (properties: Seq[Property], filter: HouseTypeEnum) : Seq[Property] = 
 def query4 (properties: Seq[Property]) : Seq[(HouseTypeEnum, Int)] = {
     val londonProperties = properties.filter { property =>
         property.address match {
-            case cityTrait: CityTrait => cityTrait.city.equals("London")
+            case cityTrait: CityTrait => cityTrait.city.equals("Middlesex")
             case _ => false
         }
     }

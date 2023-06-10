@@ -37,7 +37,7 @@ import scala.concurrent.Future
   //Query 3 List of Duplex
   println(s"\n***********************************\n")
   println(s"Query 3 : List of duplex")
-
+  index = 1
   val resultQry3 = Queries.query3(properties, HouseTypeEnum.Duplex)
   resultQry3.foreach { case (property) =>
     println(s"-------------------------------")
@@ -48,120 +48,38 @@ import scala.concurrent.Future
     index +=1
   }
 
-  val futureQr4a = Future(Queries.query4(properties,"London"))
-  futureQr4a.onComplete(
+  // Query 4: Number of rooms per property with area > 80000
+  println(s"\n***********************************\n")
+  println(s"Query 4 : Number of room per property > 8000 with rate per room ")
+  val resultQry4 = Queries.query4(properties, 8000)
+  resultQry4.foreach {
+    case (name, score) => println(s"Property name: $name, Total score: $score")
+  }
+  
+
+  println(s"\n***********************************\n")
+  println(s"Query 5 : Number of housetypes in London and Surrey")
+  println(s"-------------------------------")
+  val futureQr5a = Future(Queries.query5(properties,"London"))
+  futureQr5a.onComplete(
   { 
     case scala.util.Failure(ex) => println(s"Erreur : ${ex.getMessage}")
-    case scala.util.Success(resultQry4) => {
-      resultQry4.foreach { case (houseType, count) =>
-        println(s"-------------------------------")
-        println(s"House Type: $houseType")
-        println(s"\tCount: $count")
+    case scala.util.Success(resultQry5) => {
+      resultQry5.foreach { case (houseType, count) =>
+        println(s"$count ${HouseTypeEnum.toString(houseType)} in London")
       }
     }
   })
-val futureQr4b = Future(Queries.query4(properties,"Surrey"))
-futureQr4b.onComplete(
-{ 
-  case scala.util.Failure(ex) => println(s"Erreur : ${ex.getMessage}")
-  case scala.util.Success(resultQry4) => {
-    resultQry4.foreach { case (houseType, count) =>
-      println(s"-------------------------------")
-      println(s"House Type: $houseType")
-      println(s"\tCount: $count")
+  val futureQr5b = Future(Queries.query5(properties,"Surrey"))
+  futureQr5b.onComplete(
+  { 
+    case scala.util.Failure(ex) => println(s"Erreur : ${ex.getMessage}")
+    case scala.util.Success(resultQry5) => {
+      resultQry5.foreach { case (houseType, count) =>
+        println(s"$count ${HouseTypeEnum.toString(houseType)} in Surrey")
+      }
     }
-  }
-})
+  })
 
-  // Queries.query3(properties, HouseTypeEnum.Duplex)
-  // Queries.query4(properties)
-  // Queries.query5(properties)
-
-
-/*
-var properties: Seq[Property] = Seq()
-//Load data (CV)
-try{
-val csvFile = "./08-PropertiesLondon.csv"
-val reader = CSVReader.open(new File(csvFile))
-    properties = reader.allWithHeaders().map(record => 
-    Property(record("Property Name"), 
-    record("Price").toInt,
-    HouseType.fromString(record("House Type")).getOrElse(HouseType.House), 
-    record("Area in sq ft").toInt,
-    record("No. of Bedrooms").toInt,
-    record("No. of Bathrooms").toInt,
-    record("No. of Receptions").toInt,
-    choosePostalCode(record("Location"),record("City/County"),record("Postal Code"))
-    )
-)
-}
-catch {
-  case ex:Exception =>
-    ex.printStackTrace
-    System.exit(1)
-}
-
-// Dans le cas ou l'import csv ne fonctionne pas
-/*val properties = Seq(
-  Property("name1",12,HouseType.valueOf("Flat / Apartment"),12,1,1,1,PostalCode("test")),
-  Property("name2",24,HouseType.valueOf("New development"),12,1,2,1,PostalCode("test2")),
-  Property("name3",124,HouseType.valueOf("House"),120,11,2,3,PostalCode("test3"))
-  )
-*/
-
-
-
-//Query1(CV): map: prix par m2 (prix/area) et tri dans l'ordre
-//TODO Check pour les adresses
-//exception div par 0
-val priceM2properties = properties.map(property => (property.name, property.price/property.area, property.houseType, property.address)).sortBy(_._2)
-priceM2properties.foreach { case (name, priceM2, houseType, address) =>
-  //println(s"Name: $name, Price M2: $priceM2, Type: ${HouseType.toString(houseType)}, Address: $address")
-}
-
-//Query2(FB):  reduce: moyenne prix ou bathroom au total (plus simple) -> (à voir si on filtre sur City)
-
-val avgPriceByProperty = properties.groupBy(_.houseType).map { 
-  case (houseType, properties) =>
-    val totalPrices = properties.map(_.price.toLong).sum
-    val avgPriceByProperty = totalPrices / properties.size
-    (houseType, avgPriceByProperty)
-  }
-
-avgPriceByProperty.foreach { 
-  case (houseType, averagePrice) =>
-  //println(s"HouseType: ${HouseType.toString(houseType)}, Average Price: $averagePrice £")
-}
-
-
-
-//Query3(CV): filtre: sortir toutes les flat appartment
-val filter=HouseType.Duplex
-val filteredHouses = properties.filter(_.houseType == filter)
-//filteredHouses.foreach(println)
-
-//Query4(FB): aggragate: filtrer sur une ville puis affichage du nombre par HouseType
-//TODO corriger problème pour accéder au city 
-
-val londonProperties = properties.filter { property =>
-  property.address match {
-    case cityTrait: CityTrait => cityTrait.city.equals("London")
-    case _ => false
-  }
-}
-val countByHouseType = londonProperties.groupBy(_.houseType).mapValues(_.size)
-countByHouseType.foreach { case (houseType, count) =>
-  println(s"House Type: $houseType, Count: $count")
-}
-
-
-
-
-//Query5(FB): calcul du nombre de pièces avec un taux par pièce (badroom 0.5 par ex.)
-val roomsPerProperty = properties.map(property => (property.name, property.nbBedrooms + property.nbReceptions + (0.5 * property.nbBathrooms))).sortBy(_._2)
-roomsPerProperty.foreach { case (name, nbRooms) =>
-  //println(s"Name: $name, NbRooms: $nbRooms")
-}
-*/
+  Thread.sleep(10000)
 }

@@ -37,8 +37,15 @@ def query3 (properties: Seq[Property], filter: HouseTypeEnum) : Seq[Property] = 
 }
 
 
+def query4(properties: Seq[Property], area: Int) : Seq[(String, Double)] = {
+  properties
+    .filter(property => property.area > area)
+    .map(property => (property.name, property.nbBedrooms + property.nbReceptions + (0.5 * property.nbBathrooms)))
+    .sortBy(_._2)
+}
 
-def query4 (properties: Seq[Property], cityName: String) : Seq[(HouseTypeEnum, Int)] = {
+
+def query5 (properties: Seq[Property], cityName: String) : Seq[(HouseTypeEnum, Int)] = {
     val cityProperties = properties.filter { property =>
         property.address match {
             case cityTrait: CityTrait => cityTrait.city.equals(cityName)
@@ -49,9 +56,5 @@ def query4 (properties: Seq[Property], cityName: String) : Seq[(HouseTypeEnum, I
     countByHouseType.toSeq
 }
 
-/*
-def query5 (properties:Seq[Property]) : Seq={
-    properties.map(property => (property.name, property.nbBedrooms + property.nbReceptions + (0.5 * property.nbBathrooms))).sortBy(_._2)
-}
-*/
+
 }

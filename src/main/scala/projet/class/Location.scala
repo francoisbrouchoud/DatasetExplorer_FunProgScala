@@ -1,3 +1,3 @@
 package projet
 
-case class Location(location: String, val postalCode: String) extends PostalCode
+case class Location(location: String, val postalCode: String) extends PostalCodeTrait

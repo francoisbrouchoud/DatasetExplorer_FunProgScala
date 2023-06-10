@@ -1,4 +1,8 @@
 package projet
+import com.github.tototoshi.csv._
+import java.io.FileReader
+import java.io.File
+
 object DataHelper {
 def choosePostalCode (city:String, location:String, postalCode:String): PostalCodeTrait =
 {

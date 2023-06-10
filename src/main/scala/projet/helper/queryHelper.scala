@@ -12,18 +12,20 @@ def query1 (properties:Seq[Property]) : Seq[(String, Double, HouseTypeEnum, Post
         Seq()
     }
 }
-/*
-def query2 (properties:Seq[Property]) : Seq={
-    if properties.size > 0 then {
-        properties.groupBy(_.houseType).map { 
-        case (houseType, properties) =>
-            val totalPrices = properties.map(_.price.toLong).sum
-            val avgPriceByProperty = totalPrices / properties.size
-            (houseType, avgPriceByProperty)
-        }
-    }
-}
 
+def query2(properties: Seq[Property]): Seq[(String, Long)] = {
+  if (properties.size > 0) {
+    properties.groupBy(_.houseType).map {
+      case (houseType, properties) =>
+        val totalPrices = properties.map(_.price.toLong).sum
+        val avgPriceByProperty = totalPrices / properties.size
+        (HouseTypeEnum.toString(houseType), avgPriceByProperty)
+    }.toSeq.sortBy(_._2)
+  } else {
+    Seq.empty
+  }
+}
+/*
 def query3 (properties:Seq[Property], filter:HouseTypeEnum) : Seq={
     properties.filter(_.houseType == filter)
 }

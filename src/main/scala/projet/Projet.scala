@@ -7,29 +7,36 @@ import java.{util => ju}
 
 
 @main def hello() = {
-  val properties = DataHelper.loadCsv()
+  val future = Future(DataHelper.loadCsv())
+  println(s"Welcom in our application show properties. Please wait data are loading")
 
-
+  future.onComplete
+{ properties =>
   //Query 1
-  val resultQry1 = Queries.query1(properties)
-  var index = 1
-  println(s"Query 1 : Top ten properties by price per area")
-  resultQry1.foreach { case (name, priceM2, houseType, address) =>
-    println(s"-------------------------------")
-    println(s"Property ${index}: $name")
-    println(s"Price per area : ${"%.2f".format(priceM2)} £/m2")
-    println(s"Type: $houseType")
-    println(s"Address: $address")
-    index +=1
+  val futureQr1 = Future(Queries.query1(properties))
+  futureQr1.onComplete
+  { resultQry1 => 
+    var index = 1
+    println(s"Query 1 : Top ten properties by price per area")
+    resultQry1.foreach { case (name, priceM2, houseType, address) =>
+      println(s"-------------------------------")
+      println(s"Property ${index}: $name")
+      println(s"Price per area : ${"%.2f".format(priceM2)} £/m2")
+      println(s"Type: $houseType")
+      println(s"Address: $address")
+      index +=1
+    }
   }
 
-
   //Query 2
-  println(s"\n***********************************\n")
-  println(s"Query 2 : Average price by house type")
-  val resultQry2 = Queries.query2(properties)
-  resultQry2.foreach { case (houseType, avgPriceByProperty) => 
-        println(s"Average price for $houseType = $avgPriceByProperty £")
+  val futureQr2 = Future(Queries.query2(properties))
+  futureQr2.onComplete
+  { resultQry2 =>
+    println(s"\n***********************************\n")
+    println(s"Query 2 : Average price by house type")
+    resultQry2.foreach { case (houseType, avgPriceByProperty) => 
+          println(s"Average price for $houseType = $avgPriceByProperty £")
+    }
   }
 
 
@@ -40,7 +47,7 @@ import java.{util => ju}
  // Queries.query5(properties)
 
 
-
+}
 /*
 var properties: Seq[Property] = Seq()
 //Load data (CV)

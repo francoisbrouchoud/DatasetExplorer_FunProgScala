@@ -3,7 +3,7 @@ import java.{util => ju}
 
 object Queries{
   /**
-    * affiche le prix par mètre carré de chaque propriété
+    * Affiche le prix par mètre carré de chaque propriété
     *
     * @param properties
     * @return
@@ -50,7 +50,7 @@ object Queries{
   }
 
   /**
-    *  Donne le nombre de pièce pondérer par propriété
+    *  Donne le nombre de pièces pondérée par propriété de plus de 8000m2
     *
     * @param properties
     * @param area

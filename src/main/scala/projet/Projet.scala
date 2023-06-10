@@ -6,7 +6,6 @@ import com.github.tototoshi.csv._
 import java.io.FileReader
 import java.io.File
 import java.{util => ju}
-import scala.concurrent.Future
 
 
 @main def hello() = {
@@ -54,11 +53,15 @@ import scala.concurrent.Future
   resultQry4.foreach {
     case (name, score) => println(s"Property name: $name, Total score: $score")
   }
-  
 
+
+  
+  // Query 5 with futures : Number of housetypes in London and Surrey
   println(s"\n***********************************\n")
   println(s"Query 5 : Number of housetypes in London and Surrey")
   println(s"-------------------------------")
+  
+  
   val futureQr5a = Future(Queries.query5(properties,"London"))
   futureQr5a.onComplete(
   { 

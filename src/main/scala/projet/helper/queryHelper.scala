@@ -2,16 +2,17 @@ package projet
 import java.{util => ju}
 
 object Queries{
-def query1 (properties:Seq[Property]) : Seq[(String, Double, HouseTypeEnum, String)] = {
+def query1 (properties:Seq[Property]) : Seq[(String, Double, HouseTypeEnum, PostalCodeTrait)] = {
    try{
-        properties.map(property => (property.name, property.price/property.area, property.houseType, property.address)).sortBy(_._2)
+        properties.map(property => (property.name, property.price/property.area.toDouble, property.houseType, property.address)).sortBy(_._2).take(10)
     }
     catch {
         case ex:Exception =>
         ex.printStackTrace
+        Seq()
     }
 }
-
+/*
 def query2 (properties:Seq[Property]) : Seq={
     if properties.size > 0 then {
         properties.groupBy(_.houseType).map { 
@@ -43,4 +44,5 @@ def query4 (properties:Seq[Property]) : Seq={
 def query5 (properties:Seq[Property]) : Seq={
     properties.map(property => (property.name, property.nbBedrooms + property.nbReceptions + (0.5 * property.nbBathrooms))).sortBy(_._2)
 }
+*/
 }

@@ -11,7 +11,6 @@ import scala.concurrent.Future
 
 @main def hello() = {
   val properties = DataHelper.loadCsv()
-  println(s"Welcom in our application show properties. Please wait data are loading")
   
   //Query 1
   val resultQry1 = Queries.query1(properties)
